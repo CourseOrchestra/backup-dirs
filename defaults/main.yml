@@ -1,0 +1,9 @@
+---
+dump_name: $(date '+%A')_dir
+dump_dirs: []
+dump_hour: 0
+dump_minute: 30
+dump_file_name: /var/dumpdir.sh
+dump_attempt: 5
+dump_attempt_interval: 5  # in seconds
+dump_cron_task_name: backup dir

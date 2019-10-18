@@ -1,0 +1,18 @@
+#!/bin/bash
+{% for dir in dump_dirs %}
+bck_name={{ dir.split('/')[-1] }}_{{ dump_name }}.tar.gz
+
+tar -czf $bck_name {{ dir }}
+
+iter=0
+while [ $iter -le {{ dump_attempt }} ]
+do
+    curl -T $bck_name ftp://{{ ftp_user }}:{{ ftp_pwd }}@{{ ftp_address.rstrip('/') }}/$bck_name
+
+    if [ $? -eq 0 ]; then
+        rm $bck_name
+        iter={{ dump_attempt + 1}}
+    fi
+    sleep {{ dump_attempt_interval }}
+done
+{% endfor %}

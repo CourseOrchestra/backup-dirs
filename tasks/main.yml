@@ -1,0 +1,12 @@
+- name: create dumpall file
+  template:
+    src: dumpdir.sh.j2
+    dest: "{{ dump_file_name }}"
+    mode: a+x
+
+- name: cron task
+  cron:
+    name: backup dirs
+    hour: 06
+    minute: 00
+    job: "{{ dump_file_name }}"
