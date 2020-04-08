@@ -1,6 +1,6 @@
 #!/bin/bash
 {% for dir in dump_dirs %}
-bck_name={{ dir.split('/')[-1] }}_{{ dump_name }}.tar.gz
+bck_name=/var/{{ dir.split('/')[-1] }}_{{ dump_name }}.tar.gz
 
 tar -czf $bck_name {{ dir }}
 
